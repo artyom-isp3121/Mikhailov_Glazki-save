@@ -9,6 +9,77 @@
       Title="AgentPage">
 
     <Grid>
-        <Button Content="Go" Height="30" Width="175" Background="#FFE19C1A" Click="Button_Click"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="10" Orientation="Horizontal">
+            <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
+                 Width="300" FontSize="20"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10">
+            <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged"
+                  FontSize="15" Width="250">
+                <TextBlock>Все типы</TextBlock>
+                <TextBlock>ЗАО</TextBlock>
+                <TextBlock>МКК</TextBlock>
+                <TextBlock>МФО</TextBlock>
+                <TextBlock>ОАО</TextBlock>
+                <TextBlock>ООО</TextBlock>
+                <TextBlock>ПАО</TextBlock>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
+            <ComboBox Name="ComboType1" SelectionChanged="ComboType1_SelectionChanged"
+                    FontSize="15" Width="250">
+                <TextBlock>Сортировка</TextBlock>
+                <TextBlock>Наименование по возрастанию</TextBlock>
+                <TextBlock>Наименование по убыванию</TextBlock>
+                <TextBlock>Скидка по возростанию</TextBlock>
+                <TextBlock>Скидка по убыванию</TextBlock>
+                <TextBlock>Приоритет по возрастанию</TextBlock>
+                <TextBlock>Приоритет по убыванию</TextBlock>
+            </ComboBox>
+        </StackPanel>
+        <ListView Name="AgentListView" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="325"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Text="{Binding AgentTypeString,StringFormat= {}{0} |}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right"  FontSize="20"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Priority,StringFormat=Приоритетность: {0}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <Image Width="200" Grid.Column="0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <Binding Path="Logo">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            agents/picture.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
