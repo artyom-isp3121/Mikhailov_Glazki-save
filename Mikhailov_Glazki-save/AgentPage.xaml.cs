@@ -112,10 +112,7 @@ namespace Mikhailov_Glazki_save
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new AddEditPage());
-        }
+        
 
         private void ComboType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -219,5 +216,24 @@ namespace Mikhailov_Glazki_save
             ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
         }
 
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Mikhailov_GlazkiEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                AgentListView.ItemsSource = Mikhailov_GlazkiEntities.GetContext().Agent.ToList();
+            }
+            UpdateServices();
+        }
     }
 }

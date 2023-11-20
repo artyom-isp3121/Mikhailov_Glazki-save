@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Mikhailov_Glazki_save"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AgentPage">
+      Title="AgentPage" FontFamily="Tw Cen Mt" IsVisibleChanged="Page_IsVisibleChanged"> 
 
     <Grid>
         <Grid.RowDefinitions>
@@ -57,7 +57,8 @@
                 <TextBlock>Приоритет по убыванию</TextBlock>
             </ComboBox>
         </StackPanel>
-        <Button Content="Добавить" Name="AddButton" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+        <Button Content="Добавить" Name="AddButton"  Click="AddButton_Click"
+        HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
         <ListView Name="AgentListView" Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -78,7 +79,10 @@
                         </StackPanel>
                         <TextBlock Text="{Binding Priority,StringFormat=Приоритетность: {0}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                         <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <Image Width="200" Grid.Column="0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center">
+                        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                            <Button Name="EditButton" Content="редактировать" Margin="2" Click="EditButton_Click" ></Button>
+                        </StackPanel>
+                            <Image Width="200" Grid.Column="0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center">
                             <Image.Source>
                                 <Binding Path="Logo">
                                     <Binding.TargetNullValue>
