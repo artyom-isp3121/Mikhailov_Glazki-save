@@ -16,6 +16,8 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Name="TBcount" FontSize="20" Height="20"></TextBlock>
+            <TextBlock Name="TBAllRecords" FontSize="20" Height="20"></TextBlock>
             <Button Name="LeftDirButton" Content="&lt;" Width="20" Height="30" Click="LeftDirButton_Click" ></Button>
             <ListBox FontSize="20" Name="PageListBox" MouseUp="PageListBox_MouseUp" >
                 <ListBox.ItemsPanel>

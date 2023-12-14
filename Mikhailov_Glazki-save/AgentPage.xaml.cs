@@ -196,6 +196,9 @@ namespace Mikhailov_Glazki_save
                     PageListBox.Items.Add(i);
                 }
                 PageListBox.SelectedIndex = CurrentPage;
+                min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
+                TBcount.Text = min.ToString();
+                TBAllRecords.Text = " из " + CountRecords.ToString();
                 AgentListView.ItemsSource = CurrentPageList;
                 AgentListView.Items.Refresh();
             }
